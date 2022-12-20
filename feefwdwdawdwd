@@ -1,0 +1,390 @@
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Made by Interested";
+                    Text = "DonkeyHub",
+                    Duration = 5
+                })
+local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
+
+local MainUI = UILibrary.Load("DonkeyHub")
+local FirstPage = MainUI.AddPage("Main")
+
+local FirstLabel = FirstPage.AddLabel("Main")
+local FirstButton = FirstPage.AddButton("Anti Stomp", function()
+corepackages = game:GetService"CorePackages" local localplayer = game:GetService"Players".LocalPlayer local run = game:GetService"RunService" run:BindToRenderStep("rrrrrrrrrrr",2000,function() pcall(function() if localplayer.Character.Humanoid.Health <= 30 then localplayer.Character.Humanoid:UnequipTools() localplayer.Character.Humanoid:Destroy() workspace.CurrentCamera.CameraSubject = localplayer.Character wait() local prt = Instance.new("Model", corepackages); Instance.new("Part", prt).Name="Torso"; Instance.new("Part", prt).Name="Head"; Instance.new("Humanoid", prt).Name="Humanoid"; localplayer.Character=prt end end) pcall(function() if localplayer.Character.Humanoid.FloorMaterial == "Plastic" then ReplicatedStorage:FireServer("Stomp") end end) end) 
+print("Hello")
+end)
+local FirstButton = FirstPage.AddButton("Fly", function()
+ local L_152_
+	local L_153_ = game.Players.LocalPlayer
+	IYMouse = L_153_:GetMouse()
+	IYMouse.KeyDown:connect(
+            function(L_154_arg0)
+		if L_154_arg0 == "x" then
+			if L_152_ then
+				L_152_ = false
+				fly()
+			else
+				L_152_ = true
+				NOFLY()
+			end
+		end
+	end
+        )
+	for L_155_forvar0, L_156_forvar1 in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if L_156_forvar1:IsA("BasePart") and L_156_forvar1.CanCollide == true then
+			L_156_forvar1.CanCollide = false
+		end
+	end
+	FLYING = false
+	QEfly = true
+	iyflyspeed = 7
+	vehicleflyspeed = 7
+	function sFLY(L_157_arg0)
+		repeat
+			wait()
+		until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and
+                game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+		repeat
+			wait()
+		until IYMouse
+		local L_158_ = game.Players.LocalPlayer.Character.LowerTorso
+		local L_159_ = {
+			F = 0,
+			B = 0,
+			L = 0,
+			R = 0,
+			Q = 0,
+			E = 0
+		}
+		local L_160_ = {
+			F = 0,
+			B = 0,
+			L = 0,
+			R = 0,
+			Q = 0,
+			E = 0
+		}
+		local L_161_ = 5
+		local function L_162_func()
+			FLYING = true
+			local L_163_ = Instance.new("BodyGyro", L_158_)
+			local L_164_ = Instance.new("BodyVelocity", L_158_)
+			L_163_.P = 9e4
+			L_163_.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+			L_163_.cframe = L_158_.CFrame
+			L_164_.velocity = Vector3.new(0, 0, 0)
+			L_164_.maxForce = Vector3.new(9e9, 9e9, 9e9)
+			spawn(
+                    function()
+				repeat
+					wait()
+					if not L_157_arg0 and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+						game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").PlatformStand =
+                                    true
+					end
+					if L_159_.L + L_159_.R ~= 0 or L_159_.F + L_159_.B ~= 0 or L_159_.Q + L_159_.E ~= 0 then
+						L_161_ = 50
+					elseif not (L_159_.L + L_159_.R ~= 0 or L_159_.F + L_159_.B ~= 0 or L_159_.Q + L_159_.E ~= 0) and L_161_ ~= 0 then
+						L_161_ = 0
+					end
+					if L_159_.L + L_159_.R ~= 0 or L_159_.F + L_159_.B ~= 0 or L_159_.Q + L_159_.E ~= 0 then
+						L_164_.velocity =
+                                    (workspace.CurrentCamera.CoordinateFrame.lookVector * (L_159_.F + L_159_.B) +
+                                    workspace.CurrentCamera.CoordinateFrame *
+                                        CFrame.new(L_159_.L + L_159_.R, (L_159_.F + L_159_.B + L_159_.Q + L_159_.E) * 0.2, 0).p -
+                                    workspace.CurrentCamera.CoordinateFrame.p) *
+                                    L_161_
+						L_160_ = {
+							F = L_159_.F,
+							B = L_159_.B,
+							L = L_159_.L,
+							R = L_159_.R
+						}
+					elseif L_159_.L + L_159_.R == 0 and L_159_.F + L_159_.B == 0 and L_159_.Q + L_159_.E == 0 and L_161_ ~= 0 then
+						L_164_.velocity =
+                                    (workspace.CurrentCamera.CoordinateFrame.lookVector * (L_160_.F + L_160_.B) +
+                                    workspace.CurrentCamera.CoordinateFrame *
+                                        CFrame.new(L_160_.L + L_160_.R, (L_160_.F + L_160_.B + L_159_.Q + L_159_.E) * 0.2, 0).p -
+                                    workspace.CurrentCamera.CoordinateFrame.p) *
+                                    L_161_
+					else
+						L_164_.velocity = Vector3.new(0, 0, 0)
+					end
+					L_163_.cframe = workspace.CurrentCamera.CoordinateFrame
+				until not FLYING
+				L_159_ = {
+					F = 0,
+					B = 0,
+					L = 0,
+					R = 0,
+					Q = 0,
+					E = 0
+				}
+				L_160_ = {
+					F = 0,
+					B = 0,
+					L = 0,
+					R = 0,
+					Q = 0,
+					E = 0
+				}
+				L_161_ = 0
+				L_163_:destroy()
+				L_164_:destroy()
+				if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+					game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").PlatformStand = false
+				end
+			end
+                )
+		end
+		IYMouse.KeyDown:connect(
+                function(L_165_arg0)
+			if L_165_arg0:lower() == "w" then
+				if L_157_arg0 then
+					L_159_.F = vehicleflyspeed
+				else
+					L_159_.F = iyflyspeed
+				end
+			elseif L_165_arg0:lower() == "s" then
+				if L_157_arg0 then
+					L_159_.B = -vehicleflyspeed
+				else
+					L_159_.B = -iyflyspeed
+				end
+			elseif L_165_arg0:lower() == "a" then
+				if L_157_arg0 then
+					L_159_.L = -vehicleflyspeed
+				else
+					L_159_.L = -iyflyspeed
+				end
+			elseif L_165_arg0:lower() == "d" then
+				if L_157_arg0 then
+					L_159_.R = vehicleflyspeed
+				else
+					L_159_.R = iyflyspeed
+				end
+			elseif QEfly and L_165_arg0:lower() == "e" then
+				if L_157_arg0 then
+					L_159_.Q = vehicleflyspeed * 2
+				else
+					L_159_.Q = iyflyspeed * 2
+				end
+			elseif QEfly and L_165_arg0:lower() == "q" then
+				if L_157_arg0 then
+					L_159_.E = -vehicleflyspeed * 2
+				else
+					L_159_.E = -iyflyspeed * 2
+				end
+			end
+		end
+            )
+		IYMouse.KeyUp:connect(
+                function(L_166_arg0)
+			if L_166_arg0:lower() == "w" then
+				L_159_.F = 0
+			elseif L_166_arg0:lower() == "s" then
+				L_159_.B = 0
+			elseif L_166_arg0:lower() == "a" then
+				L_159_.L = 0
+			elseif L_166_arg0:lower() == "d" then
+				L_159_.R = 0
+			elseif L_166_arg0:lower() == "e" then
+				L_159_.Q = 0
+			elseif L_166_arg0:lower() == "q" then
+				L_159_.E = 0
+			end
+		end
+            )
+		L_162_func()
+	end
+	function NOFLY()
+		FLYING = false
+		game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").PlatformStand = true
+	end
+	function fly()
+		NOFLY()
+		wait()
+		sFLY()
+	end
+end
+)
+
+print("Hello")
+
+local FirstButton = FirstPage.AddButton("Reach", function()
+  game:GetService('RunService'):BindToRenderStep("Reach", 0 , function(value)
+                local success, err = pcall(function()
+                    if game.Players.LocalPlayer.Character.BodyEffects.Attacking.Value == true then
+                        for i,v in pairs(game:GetService('Players'):GetChildren()) do
+                            if (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.LeftHand.Position).Magnitude <= 50 then
+                                if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+                                    if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild('Handle') then
+                                        firetouchinterest(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Handle, v.Character.UpperTorso, 0)
+                                    else
+                                        firetouchinterest(game.Players.LocalPlayer.Character['RightHand'], v.Character.UpperTorso, 0)
+                                        firetouchinterest(game.Players.LocalPlayer.Character['LeftHand'], v.Character.UpperTorso, 0)
+                                        firetouchinterest(game.Players.LocalPlayer.Character['RightFoot'], v.Character.UpperTorso, 0)
+                                        firetouchinterest(game.Players.LocalPlayer.Character['LeftFoot'], v.Character.UpperTorso, 0)
+                                        firetouchinterest(game.Players.LocalPlayer.Character['RightLowerLeg'], v.Character.UpperTorso, 0)
+                                        firetouchinterest(game.Players.LocalPlayer.Character['LeftLowerLeg'], v.Character.UpperTorso, 0)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    end)
+                end)
+print("Hello")
+end)
+local FirstButton = FirstPage.AddButton("Auto Stomp", function()
+    while true do wait()
+            game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+            end
+print("Hello")
+end)
+
+local FirstPage = MainUI.AddPage("Side")
+local FirstButton = FirstPage.AddButton("Target menu", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GS21Official/DH-VictimMenu-Script/main/Dh%20VictimMenu%3A%20Script"))()
+print("Hello")
+end)
+local FirstButton = FirstPage.AddButton("Korblox", function()
+	local ply = game.Players.LocalPlayer
+	local chr = ply.Character
+	chr.RightLowerLeg.MeshId = "902942093"
+	chr.RightLowerLeg.Transparency = "1"
+	chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+	chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+	chr.RightFoot.MeshId = "902942089"
+	chr.RightFoot.Transparency = "1"
+
+print("Hello")
+end)
+local FirstButton = FirstPage.AddButton("headless", function()
+	game.Players.LocalPlayer.Character.Head.Transparency = 1
+	game.Players.LocalPlayer.Character.Head.Transparency = 1
+	for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
+		if (v:IsA("Decal")) then
+			v.Transparency = 1
+		end
+	end
+end)
+print("Hello")
+local FirstPage = MainUI.AddPage("Aimlock")
+local FirstButton = FirstPage.AddButton("Aimlock", function()
+ --[[
+ 
+ XDLOOOOOOOOOOOOOOOOOOOOOOOOOOL ASTRO
+ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚══╝╚══╝ 
+ 
+ ]]
+ 
+ local CC = game:GetService"Workspace".CurrentCamera
+    local Plr
+    local enabled = false
+    local accomidationfactor = 0.127
+    local mouse = game.Players.LocalPlayer:GetMouse()
+    local placemarker = Instance.new("Part", game.Workspace)
+ 
+    function makemarker(Parent, Adornee, Color, Size, Size2)
+        local e = Instance.new("BillboardGui", Parent)
+        e.Name = "PP"
+        e.Adornee = Adornee
+        e.Size = UDim2.new(Size, Size2, Size, Size2)
+        e.AlwaysOnTop = true
+        local a = Instance.new("Frame", e)
+        a.Size = UDim2.new(1, 0, 1, 0)
+        a.BackgroundTransparency = 0
+        a.BackgroundColor3 = Color
+        local g = Instance.new("UICorner", a)
+        g.CornerRadius = UDim.new(50, 50)
+        return(e)
+    end
+ 
+    
+    local data = game.Players:GetPlayers()
+    function noob(player)
+        local character
+        repeat wait() until player.Character
+        local handler = makemarker(guimain, player.Character:WaitForChild("HumanoidRootPart"), Color3.fromRGB(107, 184, 255), 0.3, 3)
+        handler.Name = player.Name
+        player.CharacterAdded:connect(function(Char) handler.Adornee = Char:WaitForChild("HumanoidRootPart") end)
+ 
+ 
+        spawn(function()
+            while wait() do
+                if player.Character then
+                    TextLabel.Text = player.Name..tostring(player:WaitForChild("leaderstats").Wanted.Value).." | "..tostring(math.floor(player.Character:WaitForChild("Humanoid").Health))
+                end
+            end
+        end)
+    end
+ 
+    for i = 1, #data do
+        if data[i] ~= game.Players.LocalPlayer then
+            noob(data[i])
+        end
+    end
+ 
+    game.Players.PlayerAdded:connect(function(Player)
+        noob(Player)
+    end)
+ 
+    spawn(function()
+        placemarker.Anchored = true
+        placemarker.CanCollide = false
+        placemarker.Size = Vector3.new(7, 7, 7)
+        placemarker.Transparency = 1
+        makemarker(placemarker, placemarker, Color3.fromRGB(255, 183, 197), 0.40, 0)
+    end)    
+ 
+mouse.KeyDown:Connect(function(k)
+    if k ~= "q" then return end
+    if enabled then
+        enabled = false
+        guimain[Plr.Name].Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    else
+        enabled = true 
+        Plr = getClosestPlayerToCursor()
+        guimain[Plr.Name].Frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    end    
+end)
+ 
+    function getClosestPlayerToCursor()
+        local closestPlayer
+        local shortestDistance = math.huge
+ 
+        for i, v in pairs(game.Players:GetPlayers()) do
+            if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("LowerTorso") then
+                local pos = CC:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+                local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(mouse.X, mouse.Y)).magnitude
+                if magnitude < shortestDistance then
+                    closestPlayer = v
+                    shortestDistance = magnitude
+                end
+            end
+        end
+        return closestPlayer
+    end
+ 
+    game:GetService"RunService".Stepped:connect(function()
+        if enabled and Plr.Character and Plr.Character:FindFirstChild("HumanoidRootPart") then
+            placemarker.CFrame = CFrame.new(Plr.Character.UpperTorso.Position+(Plr.Character.UpperTorso.Velocity*accomidationfactor))
+        else
+            placemarker.CFrame = CFrame.new(0, 9999, 0)
+        end
+    end)
+ 
+    local mt = getrawmetatable(game)
+    local old = mt.__namecall
+    setreadonly(mt, false)
+    mt.__namecall = newcclosure(function(...)
+        local args = {...}
+        if enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
+            args[3] = Plr.Character.UpperTorso.Position+(Plr.Character.UpperTorso.Velocity*accomidationfactor)
+            return old(unpack(args))
+        end
+        return old(...)
+    end)
+print("Hello")
+end)
